@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Cookies from 'vue-cookies'
 import DonMessage from '../utils/message'
+import el from "element-ui/src/locale/lang/el";
 
 
 Vue.use(Router)
@@ -13,6 +14,15 @@ const routes = [
     component: resolve => require(['@/views/login/Login.vue'], resolve),
     meta: {
       title: '登录'
+    }
+  },
+
+  {
+    path: '/NotFound',
+    name: 'NotFound',
+    component: resolve => require(['@/views/NotFound.vue'],resolve),
+    meta:{
+      title: '页面不存在'
     }
   },
 
@@ -37,7 +47,8 @@ const routes = [
         }
       },
     ]
-  }
+  },
+
 
 ]
 
@@ -56,11 +67,21 @@ router.beforeEach((to, from, next) => {
       console.log("from path: ", from.path)
       if (from.path === '/'){
         next("/home")
-      }else {
+      }else if (from.path === '/NotFound'){
+        next('/home')
+      } else {
         next(from.path)
       }
     }else {
       next()
+    }
+  }
+
+  if (to.matched.length === 0){
+    if (!Cookies.get('token')){
+      next("/")
+    }else {
+      next('/NotFound')
     }
   }
 
@@ -75,8 +96,6 @@ router.beforeEach((to, from, next) => {
       next()
     }
   }
-
-
   next()
 })
 

@@ -73,7 +73,7 @@
               if (_data.status === 'SUCCEED') {
                 const token = _data.data['token'];
                 //存储token
-                this.$cookies.set('token', token, "10s"); //vue-cookie
+                this.$cookies.set('token', token, "100s"); //vue-cookie
                 //登录成功，页面跳转
                 this.$message.success("登录成功")
                 // this.$router.push({path: ''})
