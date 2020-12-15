@@ -7,11 +7,11 @@ import http from '../utils/http'
 let resquest = "/api/v1"
 
 // 登录请求
-export function login(params) {
+export function user_login(params) {
   return http.post(`${resquest}/login`, params)
 }
 
-export function getUser(params) {
+export function get_user(params) {
   return http.get(`${resquest}/users`, params)
 }
 

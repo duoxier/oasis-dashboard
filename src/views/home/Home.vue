@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import {getUser} from "../../api/api";
+  import {get_user} from "../../api/api";
   import AppFooter from "../../components/Footer"
   import AppHeader from "../../components/Header";
 
@@ -29,7 +29,7 @@
       AppHeader,
     },
     mounted() {
-      getUser().then(res => console.log(res)).catch(err => console.log(err))
+      get_user().then(res => console.log(res)).catch(err => console.log(err))
     },
     data() {
       return {}
